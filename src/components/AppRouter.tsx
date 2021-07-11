@@ -4,6 +4,9 @@ import Page from "../routes/Page";
 import FindAccount from "../routes/FindAccount";
 import CreateAccount from "../routes/CreateAccount";
 import { User } from "./App";
+import Auth from "./Auth";
+import Navigation from "./Navigation";
+import Home from "./Home";
 
 interface AppProps {
   isLoggedIn: boolean;
@@ -14,13 +17,20 @@ const AppRouter = ({ isLoggedIn, userInfo }: AppProps) => {
   return (
     <Router>
       <Switch>
+        <Route exact path="/" render={() => <Page isLoggedIn={isLoggedIn} />} />
         <Route
           exact
-          path="/"
-          render={() => <Page isLoggedIn={isLoggedIn} userInfo={userInfo} />}
+          path="/login"
+          render={() => (
+            <>
+              <Auth />
+              <Navigation />
+            </>
+          )}
         />
-        <Route exact path="/find" component={FindAccount} />
-        <Route exact path="/create" component={CreateAccount} />
+        <Route exact path="/home" render={() => <Home userInfo={userInfo} />} />
+        <Route exact path="/login/find" component={FindAccount} />
+        <Route exact path="/login/create" component={CreateAccount} />
       </Switch>
     </Router>
   );

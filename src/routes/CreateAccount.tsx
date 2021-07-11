@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { authService } from "../fbase";
 
-interface AppProps {
-  history: any;
-}
-
-const CreateAccount = ({ history }: AppProps) => {
+const CreateAccount = () => {
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -56,7 +53,7 @@ const CreateAccount = ({ history }: AppProps) => {
         required
       />
       <div>{error}</div>
-      <Link to="/">Cancel</Link>
+      <Link to="/login">Cancel</Link>
       <input type="submit" value="Sign Up" />
     </form>
   );

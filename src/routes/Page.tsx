@@ -1,24 +1,19 @@
 import React from "react";
-import Home from "../components/Home";
-import Auth from "../components/Auth";
-import Navigation from "../components/Navigation";
-import { User } from "../components/App";
+import { useHistory } from "react-router-dom";
 
 interface AppProps {
   isLoggedIn: boolean;
-  userInfo: User | null;
 }
 
-const Page = ({ isLoggedIn, userInfo }: AppProps) => {
-  if (isLoggedIn && userInfo) {
-    return <Home userInfo={userInfo} />;
+const Page = ({ isLoggedIn }: AppProps) => {
+  const history = useHistory();
+
+  if (isLoggedIn) {
+    history.push("/home");
+    return <></>;
   } else {
-    return (
-      <>
-        <Auth />
-        <Navigation />
-      </>
-    );
+    history.push("/login");
+    return <></>;
   }
 };
 

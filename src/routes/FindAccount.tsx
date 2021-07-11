@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { authService } from "../fbase";
 
-interface AppProps {
-  history: any;
-}
-
-const FindAccount = ({ history }: AppProps) => {
+const FindAccount = () => {
+  const history = useHistory();
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
 
@@ -23,7 +20,7 @@ const FindAccount = ({ history }: AppProps) => {
       const confirmFlag = window.confirm("Do you want to send an email?");
       if (confirmFlag) {
         await authService.sendPasswordResetEmail(email);
-        history.push("/");
+        history.push("/login");
       }
     } catch (err) {
       setError(err.message);
@@ -41,7 +38,7 @@ const FindAccount = ({ history }: AppProps) => {
         onChange={onChange}
         required
       />
-      <Link to="/">Cancel</Link>
+      <Link to="/login">Cancel</Link>
       <input type="submit" value="Send Email" />
       <div>{error}</div>
     </form>
