@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { authService } from "../fbase";
 import AppRouter from "./AppRouter";
+import userImage from "../image/free-icon-user-picture.png";
 
 export interface User {
   uid: string;
   displayName: string | null;
-  photoUrl: string | null;
+  photoUrl: string;
 }
 
 export interface FeedObj {
@@ -24,11 +25,17 @@ const App = () => {
     authService.onAuthStateChanged((user) => {
       if (user) {
         // User is signed in
+        let photoUrl: string | null = user.photoURL;
+
+        // set default user image
+        if (photoUrl === null) {
+          photoUrl = userImage;
+        }
+
         setUserInfo({
           uid: user.uid,
-          // default user name
-          displayName: "fb user",
-          photoUrl: user.photoURL,
+          displayName: user.displayName,
+          photoUrl: photoUrl,
         });
         setIsLoggedIn(true);
       } else {
@@ -40,10 +47,10 @@ const App = () => {
     });
   }, []);
 
-  if (init) {
+  if (init && userInfo) {
     return <AppRouter isLoggedIn={isLoggedIn} userInfo={userInfo} />;
   } else {
-    return <div>Initializing...</div>;
+    return <div>Loading...</div>;
   }
 };
 

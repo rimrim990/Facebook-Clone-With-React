@@ -1,5 +1,5 @@
 import React from "react";
-import { User, FeedObj } from "./App";
+import { User, FeedObj } from "../common/App";
 import Feed from "./Feed";
 
 export interface FeedObjExtended extends FeedObj {

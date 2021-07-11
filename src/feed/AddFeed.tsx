@@ -1,6 +1,6 @@
 import React, { useState, useRef, ChangeEvent, SyntheticEvent } from "react";
-import { User, FeedObj } from "./App";
-import userImage from "../image/free-icon-user-picture.png";
+import { User, FeedObj } from "../common/App";
+
 import { dbService } from "../fbase";
 
 interface AppProps {
@@ -12,12 +12,6 @@ const AddFeed = ({ userInfo }: AppProps) => {
   const [content, setContent] = useState<string>("");
   const [error, setError] = useState<string>("");
   const fileInput = useRef<HTMLInputElement>(null);
-  let photoUrl: string | null = userInfo.photoUrl;
-
-  // set default user image
-  if (photoUrl === null) {
-    photoUrl = userImage;
-  }
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {
@@ -72,14 +66,14 @@ const AddFeed = ({ userInfo }: AppProps) => {
 
   return (
     <form onSubmit={onSubmit}>
-      <img src={photoUrl} alt="user" width="30px" height="30px" />
-      <span>{userInfo.displayName}</span>
+      <img src={userInfo.photoUrl} alt="user" width="30px" height="30px" />
       <input
         type="text"
         placeholder={`what's on your mind ${userInfo.displayName}?`}
         value={content}
         onChange={onChange}
         maxLength={240}
+        required
       />
       <input
         type="file"

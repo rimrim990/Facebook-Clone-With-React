@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { FeedObj, User } from "./App";
-import FeedList from "./FeedList";
-import AddFeed from "./AddFeed";
+import { useHistory } from "react-router-dom";
+import { User } from "../common/App";
+import FeedList from "../feed/FeedList";
+import AddFeed from "../feed/AddFeed";
 import { dbService } from "../fbase";
 
 interface AppProps {
-  userInfo: User;
+  userInfo: User | null;
 }
 
 const Home = ({ userInfo }: AppProps) => {
   const [feedList, setFeedList] = useState<Array<any>>([]);
+  const history = useHistory();
+
   useEffect(() => {
     dbService.collection("feeds").onSnapshot((snapshot) => {
       const data = snapshot.docs.map((doc) => ({
@@ -19,15 +22,18 @@ const Home = ({ userInfo }: AppProps) => {
       setFeedList(data);
     });
   }, []);
-  return (
-    <div>
-      <header></header>
-      <main>
+
+  if (userInfo) {
+    return (
+      <div>
         <AddFeed userInfo={userInfo} />
         <FeedList feedList={feedList} userInfo={userInfo} />
-      </main>
-    </div>
-  );
+      </div>
+    );
+  } else {
+    history.push("/login");
+    return <></>;
+  }
 };
 
 export default Home;

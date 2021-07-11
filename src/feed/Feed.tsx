@@ -1,5 +1,5 @@
 import React from "react";
-import { User } from "./App";
+import { User } from "../common/App";
 import { FeedObjExtended } from "./FeedList";
 import { dbService } from "../fbase";
 
@@ -19,15 +19,12 @@ const Feed = ({ feed, userInfo, isOwner }: AppProps) => {
   };
   return (
     <div>
-      <span>{feed.createdAt}</span>
+      <span>{new Date(feed.createdAt).toString().substr(4, 11)}</span>
       <p>{feed.content}</p>
       {feed.photoUrl && (
         <img src={feed.photoUrl} alt="feedimg" width="200px" height="200px" />
       )}
       {isOwner && <button onClick={onDeleteClick}>Delete Feed</button>}
-      <button>Like</button>
-      <button>Comment</button>
-      <button>Share</button>
     </div>
   );
 };

@@ -6,13 +6,23 @@ const CreateAccount = () => {
   const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
   const [error, setError] = useState("");
 
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      await authService.createUserWithEmailAndPassword(email, password);
-      console.log("Log In Success!");
+      const user = await authService.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+      if (user.user) {
+        await user.user.updateProfile({
+          displayName: name,
+        });
+      } else {
+        console.log("profile update err!");
+      }
       history.push("/");
     } catch (err) {
       setError(err.message);
@@ -27,6 +37,8 @@ const CreateAccount = () => {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+    } else if (name === "name") {
+      setName(value);
     }
   };
 
@@ -50,6 +62,14 @@ const CreateAccount = () => {
         onChange={onChange}
         value={password}
         placeholder="Password"
+        required
+      />
+      <input
+        type="text"
+        name="name"
+        onChange={onChange}
+        value={name}
+        placeholder="name"
         required
       />
       <div>{error}</div>
