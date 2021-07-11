@@ -2,11 +2,17 @@ import React, { useState, useEffect } from "react";
 import { authService } from "../fbase";
 import AppRouter from "./AppRouter";
 
-interface User {
-  creator: string;
-  createdAt: number;
+export interface User {
+  uid: string;
   displayName: string | null;
   photoUrl: string | null;
+}
+
+export interface FeedObj {
+  creator: string;
+  createdAt: number;
+  photoUrl: string | null;
+  content: string;
 }
 
 const App = () => {
@@ -19,9 +25,9 @@ const App = () => {
       if (user) {
         // User is signed in
         setUserInfo({
-          creator: user.uid,
-          createdAt: Date.now(),
-          displayName: user.displayName,
+          uid: user.uid,
+          // default user name
+          displayName: "fb user",
           photoUrl: user.photoURL,
         });
         setIsLoggedIn(true);
@@ -35,7 +41,7 @@ const App = () => {
   }, []);
 
   if (init) {
-    return <AppRouter isLoggedIn={isLoggedIn} />;
+    return <AppRouter isLoggedIn={isLoggedIn} userInfo={userInfo} />;
   } else {
     return <div>Initializing...</div>;
   }
