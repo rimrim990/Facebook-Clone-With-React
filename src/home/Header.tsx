@@ -11,6 +11,7 @@ const Header = ({ userInfo }: AppProps) => {
   return (
     <div>
       <img src={logo} alt="logo" width="30px" height="30px" />
+      <h2>Facebook</h2>
       <div>Search</div>
       <div>Messenger</div>
       {userInfo && <NavBar userInfo={userInfo} />}

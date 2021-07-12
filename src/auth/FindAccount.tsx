@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { authService } from "../fbase";
+import "./FindAccount.css";
 
 const FindAccount = () => {
   const history = useHistory();
@@ -28,20 +29,35 @@ const FindAccount = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Find Your Account!</h1>
-      <p>Please enter your email to search for your account.</p>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={onChange}
-        required
-      />
-      <Link to="/login">Cancel</Link>
-      <input type="submit" value="Send Email" />
-      <div>{error}</div>
-    </form>
+    <>
+      <header className="auth-header">
+        <Link to="/login" className="link">
+          facebook
+        </Link>
+      </header>
+      <div className="auth-page">
+        <form onSubmit={onSubmit} className="auth-form">
+          <h2 className="find-auth-title">Find Your Account!</h2>
+          <p className="find-auth-text">
+            Please enter your email to search for your account.
+          </p>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={onChange}
+            required
+            className="auth-input"
+          />
+          <div className="error">{error}</div>
+          <div className="line"></div>
+          <input type="submit" className="submit-btn" value="Send" />
+          <Link to="/login" className="cancel-btn">
+            Cancel
+          </Link>
+        </form>
+      </div>
+    </>
   );
 };
 

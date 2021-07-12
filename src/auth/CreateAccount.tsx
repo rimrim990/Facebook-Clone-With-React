@@ -43,39 +43,52 @@ const CreateAccount = () => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <h2>Sign Up</h2>
-        <p>It's quick and easy!</p>
+    <>
+      <header className="auth-header">
+        <Link to="/login" className="link">
+          facebook
+        </Link>
+      </header>
+      <div className="auth-page">
+        <form onSubmit={onSubmit} className="auth-form">
+          <h2 className="find-auth-title">Sign Up</h2>
+          <p className="find-auth-text">It's quick and easy!</p>
+          <input
+            type="email"
+            name="email"
+            onChange={onChange}
+            value={email}
+            placeholder="Email or Phone Number"
+            required
+            className="auth-input"
+          />
+          <input
+            type="password"
+            name="password"
+            onChange={onChange}
+            value={password}
+            placeholder="Password"
+            required
+            className="auth-input"
+          />
+          <input
+            type="text"
+            name="name"
+            onChange={onChange}
+            value={name}
+            placeholder="name"
+            className="auth-input"
+            required
+          />
+          <div className="error">{error}</div>
+          <div className="line"></div>
+          <input type="submit" value="Sign Up" className="submit-btn" />
+          <Link to="/login" className="cancel-btn">
+            Cancel
+          </Link>
+        </form>
       </div>
-      <input
-        type="email"
-        name="email"
-        onChange={onChange}
-        value={email}
-        placeholder="Email or Phone Number"
-        required
-      />
-      <input
-        type="password"
-        name="password"
-        onChange={onChange}
-        value={password}
-        placeholder="Password"
-        required
-      />
-      <input
-        type="text"
-        name="name"
-        onChange={onChange}
-        value={name}
-        placeholder="name"
-        required
-      />
-      <div>{error}</div>
-      <Link to="/login">Cancel</Link>
-      <input type="submit" value="Sign Up" />
-    </form>
+    </>
   );
 };
 

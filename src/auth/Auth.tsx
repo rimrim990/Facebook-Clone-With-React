@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { authService } from "../fbase";
+import "./Auth.css";
+import Navigation from "./Navigation";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -28,13 +30,16 @@ const Auth = () => {
   };
 
   return (
-    <>
-      <div>
-        <h1>facebook</h1>
-        <p>Connect with friends and the world around you on Facebook.</p>
+    <div className="auth-page">
+      <div className="content">
+        <h1 className="title">facebook</h1>
+        <p className="text">
+          Connect with friends and the world around you on Facebook.
+        </p>
       </div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="auth-form">
         <input
+          className="auth-input"
           type="email"
           name="email"
           onChange={onChange}
@@ -43,6 +48,7 @@ const Auth = () => {
           required
         />
         <input
+          className="auth-input"
           type="password"
           name="password"
           onChange={onChange}
@@ -50,10 +56,16 @@ const Auth = () => {
           placeholder="Password"
           required
         />
-        <div>{error}</div>
-        <input type="submit" name="login" value="Log In" />
+        <div className="error">{error}</div>
+        <input
+          className="login-btn"
+          type="submit"
+          name="login"
+          value="Log In"
+        />
+        <Navigation />
       </form>
-    </>
+    </div>
   );
 };
 export default Auth;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { authService } from "../fbase";
 import AppRouter from "./AppRouter";
 import userImage from "../image/free-icon-user-picture.png";
+import "./App.css";
 
 export interface User {
   uid: string;
@@ -47,10 +48,18 @@ const App = () => {
     });
   }, []);
 
-  if (init && userInfo) {
-    return <AppRouter isLoggedIn={isLoggedIn} userInfo={userInfo} />;
+  if (init) {
+    return (
+      <div className="app">
+        <AppRouter isLoggedIn={isLoggedIn} userInfo={userInfo} />
+      </div>
+    );
   } else {
-    return <div>Loading...</div>;
+    return (
+      <div className="app">
+        <div className="load-page">Loading</div>
+      </div>
+    );
   }
 };
 

@@ -9,10 +9,11 @@ import Navigation from "../auth/Navigation";
 import Home from "../home/Home";
 import Header from "../home/Header";
 import AboutMe from "../home/AboutMe";
+import Footer from "./Footer";
 
 interface AppProps {
   isLoggedIn: boolean;
-  userInfo: User;
+  userInfo: User | null;
 }
 
 const AppRouter = ({ isLoggedIn, userInfo }: AppProps) => {
@@ -27,7 +28,6 @@ const AppRouter = ({ isLoggedIn, userInfo }: AppProps) => {
           render={() => (
             <>
               <Auth />
-              <Navigation />
             </>
           )}
         />
@@ -35,12 +35,15 @@ const AppRouter = ({ isLoggedIn, userInfo }: AppProps) => {
         <Route exact path="/login/create" component={CreateAccount} />
 
         <Route exact path="/home" render={() => <Home userInfo={userInfo} />} />
-        <Route
-          exact
-          path="/home/me"
-          render={() => <AboutMe userInfo={userInfo} />}
-        />
+        {userInfo && (
+          <Route
+            exact
+            path="/home/me"
+            render={() => <AboutMe userInfo={userInfo} />}
+          />
+        )}
       </Switch>
+      <Route path="/" component={Footer} />
     </Router>
   );
 };
