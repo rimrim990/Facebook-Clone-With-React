@@ -1,7 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { User } from "../common/App";
 import NavBar from "./NavBar";
-import logo from "../image/facebook-circular-logo.png";
+import "./Header.css";
 
 interface AppProps {
   userInfo: User | null;
@@ -9,13 +10,14 @@ interface AppProps {
 
 const Header = ({ userInfo }: AppProps) => {
   return (
-    <div>
-      <img src={logo} alt="logo" width="30px" height="30px" />
-      <h2>Facebook</h2>
-      <div>Search</div>
-      <div>Messenger</div>
+    <>
+      <header className="header">
+        <Link to="/home" className="link">
+          <h2 className="header-title">facebook</h2>
+        </Link>
+      </header>
       {userInfo && <NavBar userInfo={userInfo} />}
-    </div>
+    </>
   );
 };
 

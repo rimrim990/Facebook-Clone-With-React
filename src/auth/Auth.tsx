@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { authService } from "../fbase";
 import "./Auth.css";
 import Navigation from "./Navigation";
@@ -7,6 +8,7 @@ const Auth = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const histroy = useHistory();
 
   const onChange = (event: any) => {
     const {
@@ -24,6 +26,7 @@ const Auth = () => {
     event.preventDefault();
     try {
       await authService.signInWithEmailAndPassword(email, password);
+      histroy.push("/");
     } catch (err) {
       setError(err.message);
     }

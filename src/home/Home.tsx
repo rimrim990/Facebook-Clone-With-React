@@ -4,6 +4,7 @@ import { User } from "../common/App";
 import FeedList from "../feed/FeedList";
 import AddFeed from "../feed/AddFeed";
 import { dbService } from "../fbase";
+import "./Home.css";
 
 interface AppProps {
   userInfo: User | null;
@@ -25,7 +26,7 @@ const Home = ({ userInfo }: AppProps) => {
 
   if (userInfo) {
     return (
-      <div>
+      <div className="home">
         <AddFeed userInfo={userInfo} />
         <FeedList feedList={feedList} userInfo={userInfo} />
       </div>

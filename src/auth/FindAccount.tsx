@@ -30,7 +30,7 @@ const FindAccount = () => {
 
   return (
     <>
-      <header className="auth-header">
+      <header className="header">
         <Link to="/login" className="link">
           facebook
         </Link>

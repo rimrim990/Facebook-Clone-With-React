@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { User } from "../common/App";
 import { FeedObjExtended } from "./FeedList";
 import { dbService } from "../fbase";
+import "./Feed.css";
+import img from "../image/free-icon-user-picture.png";
 
 interface AppProps {
   feed: FeedObjExtended;
@@ -18,13 +20,31 @@ const Feed = ({ feed, userInfo, isOwner }: AppProps) => {
     }
   };
   return (
-    <div>
-      <span>{new Date(feed.createdAt).toString().substr(4, 11)}</span>
-      <p>{feed.content}</p>
-      {feed.photoUrl && (
-        <img src={feed.photoUrl} alt="feedimg" width="200px" height="200px" />
-      )}
-      {isOwner && <button onClick={onDeleteClick}>Delete Feed</button>}
+    <div className="feed">
+      <div className="feed-header">
+        <img className="creator-img" src={img} alt="user" />
+        <div className="creator-info">
+          <span className="creator">User</span>
+          <br />
+          <span className="create-date">
+            {new Date(feed.createdAt).toString().substr(4, 11)}
+          </span>
+        </div>
+      </div>
+      <div className="feed-form">
+        <p className="feed-content">{feed.content}</p>
+        {feed.photoUrl && (
+          <img className="feed-img" src={feed.photoUrl} alt="feedimg" />
+        )}
+        {isOwner && (
+          <>
+            <div className="line"></div>
+            <button className="feed-delete" onClick={onDeleteClick}>
+              Delete
+            </button>
+          </>
+        )}
+      </div>
     </div>
   );
 };

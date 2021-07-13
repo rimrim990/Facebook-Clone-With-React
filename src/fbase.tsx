@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import * as admin from "firebase-admin";
 import "firebase/auth";
 import "firebase/firestore";
 

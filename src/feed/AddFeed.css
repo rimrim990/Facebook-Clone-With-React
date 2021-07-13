@@ -1,0 +1,60 @@
+.add-feed {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 0px 0px 15px;
+}
+
+.add-feed .feed-header {
+  background-color: rgba(0, 0, 0.1, 0.05);
+  border-bottom: 1px solid lightgrey;
+}
+
+.add-feed .feed-header .feed-title {
+  font-weight: normal;
+  margin: 0px;
+  padding: 10px;
+}
+
+.add-feed .feed-form .user-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: 15px;
+}
+
+.add-feed .feed-form .text-input {
+  width: 80%;
+  height: 40px;
+  border: none;
+}
+
+.add-feed .feed-form .text-input::placeholder {
+  font-size: 16px;
+}
+
+.add-feed .feed-form .text-input:focus {
+  outline: none;
+}
+
+.add-feed .feed-form .line {
+  margin: 5px 0px;
+}
+
+.add-feed .feed-form .feed-img {
+  padding: 0px 10px 5px;
+  position: relative;
+  height: 30px;
+}
+
+.add-feed .feed-form .feed-post {
+  background-color: #1877f2;
+  color: white;
+  border: none;
+  width: 60px;
+  height: 30px;
+  bottom: 5px;
+  position: absolute;
+  right: 10px;
+}

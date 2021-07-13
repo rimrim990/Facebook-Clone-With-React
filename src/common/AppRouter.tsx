@@ -5,7 +5,6 @@ import FindAccount from "../auth/FindAccount";
 import CreateAccount from "../auth/CreateAccount";
 import { User } from "./App";
 import Auth from "../auth/Auth";
-import Navigation from "../auth/Navigation";
 import Home from "../home/Home";
 import Header from "../home/Header";
 import AboutMe from "../home/AboutMe";

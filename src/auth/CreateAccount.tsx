@@ -44,7 +44,7 @@ const CreateAccount = () => {
 
   return (
     <>
-      <header className="auth-header">
+      <header className="header">
         <Link to="/login" className="link">
           facebook
         </Link>
@@ -58,7 +58,7 @@ const CreateAccount = () => {
             name="email"
             onChange={onChange}
             value={email}
-            placeholder="Email or Phone Number"
+            placeholder="Email"
             required
             className="auth-input"
           />

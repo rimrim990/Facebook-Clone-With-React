@@ -1,4 +1,4 @@
-.auth-header {
+.header {
   background-color: white;
   text-align: left;
   padding: 15px;
@@ -8,7 +8,7 @@
   margin: 0px;
 }
 
-.auth-header .link {
+.header .link {
   color: #1877f2;
   font-weight: bold;
   font-size: 30px;

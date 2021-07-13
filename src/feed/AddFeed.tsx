@@ -1,7 +1,7 @@
 import React, { useState, useRef, ChangeEvent, SyntheticEvent } from "react";
 import { User, FeedObj } from "../common/App";
-
 import { dbService } from "../fbase";
+import "./AddFeed.css";
 
 interface AppProps {
   userInfo: User;
@@ -65,28 +65,38 @@ const AddFeed = ({ userInfo }: AppProps) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
-      <img src={userInfo.photoUrl} alt="user" width="30px" height="30px" />
-      <input
-        type="text"
-        placeholder={`what's on your mind ${userInfo.displayName}?`}
-        value={content}
-        onChange={onChange}
-        maxLength={240}
-        required
-      />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={onFileChange}
-        ref={fileInput}
-      />
-      <input type="submit" value="Register" />
-      <button type="button" onClick={onReset}>
-        Clear Photo
-      </button>
-      {error && <div>{error}</div>}
-    </form>
+    <div className="add-feed">
+      <header className="feed-header">
+        <h3 className="feed-title">Create Post</h3>
+      </header>
+      <form onSubmit={onSubmit} className="feed-form">
+        <img className="user-img" src={userInfo.photoUrl} alt="user" />
+        <input
+          type="text"
+          placeholder={`What's on your mind, ${userInfo.displayName}?`}
+          value={content}
+          onChange={onChange}
+          maxLength={240}
+          className="text-input"
+          required
+        />
+        <div className="line"></div>
+        <div className="feed-img">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={onFileChange}
+            ref={fileInput}
+            className="file-input "
+          />
+          <input type="submit" value="Post" className="feed-post" />
+          <button type="button" onClick={onReset} className="clear-photo">
+            Clear Photo
+          </button>
+        </div>
+        {error && <div className="error">{error}</div>}
+      </form>
+    </div>
   );
 };
 

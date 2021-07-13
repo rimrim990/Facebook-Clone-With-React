@@ -1,0 +1,17 @@
+.header-nav {
+  background-color: white;
+}
+
+.header-nav ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.header-nav ul li {
+  display: inline-block;
+}
+
+.header-nav ul li .nav-btn {
+  text-decoration: none;
+}

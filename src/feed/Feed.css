@@ -1,0 +1,57 @@
+.feed {
+  background-color: white;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  margin: 0px 0px 15px;
+}
+
+.feed .feed-header {
+  padding: 10px;
+}
+
+.feed .feed-header .creator-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.feed .feed-header .creator-info {
+  display: inline-block;
+}
+
+.feed .feed-header .creator-info .creator {
+  font-weight: bold;
+}
+
+.feed .feed-header .creator-info .create-date {
+  font-size: 10px;
+  color: grey;
+}
+
+.feed .feed-form {
+  overflow: hidden;
+}
+
+.feed .feed-form .feed-content {
+  padding: 0px 10px;
+}
+
+.feed .feed-form .feed-img {
+  display: block;
+  width: 100%;
+}
+
+.feed .feed-form .line {
+  margin: 15px 0px 5px;
+}
+
+.feed .feed-form .feed-delete {
+  float: right;
+  background-color: grey;
+  width: 60px;
+  height: 30px;
+  border: none;
+  color: white;
+  margin: 0px 10px 5px;
+}
