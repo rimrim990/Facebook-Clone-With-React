@@ -1,5 +1,20 @@
+.header {
+  box-sizing: border-box;
+  height: 80px;
+}
+
 .header .link .header-title {
   display: inline-block;
   margin: 0px;
   font-size: 30px;
+}
+
+.header .logout {
+  float: right;
+  border: none;
+  background-color: grey;
+  color: white;
+  width: 60px;
+  height: 30px;
+  cursor: pointer;
 }

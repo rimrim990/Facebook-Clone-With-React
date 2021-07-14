@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { dbService } from "../fbase";
 import { User } from "../common/App";
 import FeedList from "../feed/FeedList";
+import "./AboutMe.css";
 
 interface AppProps {
   userInfo: User;
@@ -12,11 +13,12 @@ const AboutMe = ({ userInfo }: AppProps) => {
   const { displayName, photoUrl } = userInfo;
 
   const getMyFeedList = async () => {
-    const data = await dbService
-      .collection("feeds")
-      .where("creator", "==", userInfo.uid)
-      .get();
     try {
+      const data = await dbService
+        .collection("feeds")
+        .where("creator", "==", userInfo.uid)
+        .get();
+
       const mappedData = data.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -33,12 +35,15 @@ const AboutMe = ({ userInfo }: AppProps) => {
 
   return (
     <>
-      <form>
-        <img src={photoUrl} alt="user" width="120px" height="120px" />
-        <span>{displayName}</span>
-        <input type="submit" value="Edit Profile" />
+      <form className="my-header">
+        <img draggable={false} className="my-img" src={photoUrl} alt="user" />
+        <div className="my-name">{displayName}</div>
+        <input type="submit" className="my-btn" value="Edit Name" />
+        <input type="submit" className="my-btn" value="Upload Photo" />
       </form>
-      {feedList && <FeedList userInfo={userInfo} feedList={feedList} />}
+      <div className="my-feed">
+        {feedList && <FeedList userInfo={userInfo} feedList={feedList} />}
+      </div>
     </>
   );
 };

@@ -57,6 +57,7 @@
   height: 50px;
   border-radius: 8px;
   margin: 20px 0px 15px;
+  cursor: pointer;
 }
 
 .error {

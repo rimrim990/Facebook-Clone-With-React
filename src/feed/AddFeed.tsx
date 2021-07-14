@@ -13,7 +13,7 @@ const AddFeed = ({ userInfo }: AppProps) => {
   const [error, setError] = useState<string>("");
   const fileInput = useRef<HTMLInputElement>(null);
 
-  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
     const {
       target: { value },
     } = event;
@@ -62,6 +62,7 @@ const AddFeed = ({ userInfo }: AppProps) => {
   const onReset = () => {
     if (!fileInput.current) throw Error("inputRef is not assigned!");
     fileInput.current.value = "";
+    setAttachment(null);
   };
 
   return (
@@ -70,29 +71,50 @@ const AddFeed = ({ userInfo }: AppProps) => {
         <h3 className="feed-title">Create Post</h3>
       </header>
       <form onSubmit={onSubmit} className="feed-form">
-        <img className="user-img" src={userInfo.photoUrl} alt="user" />
-        <input
-          type="text"
-          placeholder={`What's on your mind, ${userInfo.displayName}?`}
-          value={content}
-          onChange={onChange}
-          maxLength={240}
-          className="text-input"
-          required
-        />
+        <div className="feed-view">
+          <img
+            draggable={false}
+            className="user-img"
+            src={userInfo.photoUrl}
+            alt="user"
+          />
+          <textarea
+            placeholder={`What's on your mind, ${userInfo.displayName}?`}
+            value={content}
+            onChange={onChange}
+            maxLength={180}
+            className="text-input"
+            rows={4}
+            cols={45}
+            required
+          ></textarea>
+        </div>
+        {attachment && (
+          <img
+            draggable={false}
+            src={attachment}
+            alt="feed-img"
+            className="feed-attachment"
+          />
+        )}
         <div className="line"></div>
         <div className="feed-img">
+          <label className="file-input" htmlFor="file-input">
+            Photo
+          </label>
           <input
             type="file"
             accept="image/*"
             onChange={onFileChange}
             ref={fileInput}
-            className="file-input "
+            id="file-input"
           />
           <input type="submit" value="Post" className="feed-post" />
-          <button type="button" onClick={onReset} className="clear-photo">
-            Clear Photo
-          </button>
+          {attachment && (
+            <button type="button" onClick={onReset} className="clear-photo">
+              Clear
+            </button>
+          )}
         </div>
         {error && <div className="error">{error}</div>}
       </form>

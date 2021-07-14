@@ -22,7 +22,7 @@ const Feed = ({ feed, userInfo, isOwner }: AppProps) => {
   return (
     <div className="feed">
       <div className="feed-header">
-        <img className="creator-img" src={img} alt="user" />
+        <img draggable={false} className="creator-img" src={img} alt="user" />
         <div className="creator-info">
           <span className="creator">User</span>
           <br />
@@ -34,7 +34,12 @@ const Feed = ({ feed, userInfo, isOwner }: AppProps) => {
       <div className="feed-form">
         <p className="feed-content">{feed.content}</p>
         {feed.photoUrl && (
-          <img className="feed-img" src={feed.photoUrl} alt="feedimg" />
+          <img
+            draggable={false}
+            className="feed-img"
+            src={feed.photoUrl}
+            alt="feedimg"
+          />
         )}
         {isOwner && (
           <>

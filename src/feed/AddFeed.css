@@ -16,6 +16,12 @@
   padding: 10px;
 }
 
+.add-feed .feed-form .feed-view {
+  margin: 15px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
 .add-feed .feed-form .user-img {
   width: 40px;
   height: 40px;
@@ -25,9 +31,10 @@
 }
 
 .add-feed .feed-form .text-input {
-  width: 80%;
-  height: 40px;
+  font-family: inherit;
   border: none;
+  resize: none;
+  overflow: hidden;
 }
 
 .add-feed .feed-form .text-input::placeholder {
@@ -36,6 +43,10 @@
 
 .add-feed .feed-form .text-input:focus {
   outline: none;
+}
+
+.add-feed .feed-form .feed-attachment {
+  width: 100%;
 }
 
 .add-feed .feed-form .line {
@@ -48,6 +59,27 @@
   height: 30px;
 }
 
+.add-feed .feed-form .feed-img .file-input {
+  background-color: #36a420;
+  color: white;
+  border: 1px solid #36a420;
+  width: 60px;
+  height: 30px;
+  position: absolute;
+  left: 10px;
+  bottom: 5px;
+  padding: 1px 6px;
+  font-size: 13px;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.add-feed .feed-form .feed-img #file-input {
+  display: none;
+}
+
 .add-feed .feed-form .feed-post {
   background-color: #1877f2;
   color: white;
@@ -57,4 +89,17 @@
   bottom: 5px;
   position: absolute;
   right: 10px;
+  cursor: pointer;
+}
+
+.add-feed .feed-form .clear-photo {
+  background-color: grey;
+  color: white;
+  border: none;
+  width: 60px;
+  height: 30px;
+  bottom: 5px;
+  position: absolute;
+  left: 80px;
+  cursor: pointer;
 }
