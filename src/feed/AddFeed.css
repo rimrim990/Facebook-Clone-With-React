@@ -23,11 +23,10 @@
 }
 
 .add-feed .feed-form .user-img {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   vertical-align: middle;
-  margin: 15px;
 }
 
 .add-feed .feed-form .text-input {

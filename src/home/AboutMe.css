@@ -12,6 +12,19 @@
   color: black;
   font-weight: bold;
   font-size: 20px;
+  height: 24px;
+}
+
+.my-header .my-name.edit {
+  display: block;
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0 auto;
+  width: 45%;
+  text-align: center;
+  box-sizing: border-box;
+  height: 24px;
 }
 
 .my-header .my-img {
@@ -23,11 +36,25 @@
 .my-header .my-btn {
   width: 35%;
   height: 25px;
-  margin: 10px;
+  margin: 10px 10px 0px;
   background-color: #1877f2;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.my-header .my-btn.reset {
+  background-color: grey;
+}
+
+.my-header .my-btn.upload {
+  display: inline-block;
+  font-size: 13px;
+  line-height: 25px;
+}
+
+.my-header #photo-upload {
+  display: none;
 }
 
 .my-feed {
