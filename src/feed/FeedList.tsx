@@ -18,7 +18,6 @@ const FeedList = ({ feedList, userInfo }: AppProps) => {
         <Feed
           key={feed.id}
           feed={feed}
-          userInfo={userInfo}
           isOwner={feed.creator === userInfo.uid}
         />
       ))}

@@ -1,15 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { User } from "../common/App";
 import NavBar from "./NavBar";
 import "./Header.css";
 import { authService } from "../fbase";
 
-interface AppProps {
-  userInfo: User | null;
-}
-
-const Header = ({ userInfo }: AppProps) => {
+const Header = () => {
   const onClick = async (event: any) => {
     await authService.signOut();
   };
@@ -23,7 +18,7 @@ const Header = ({ userInfo }: AppProps) => {
           Log Out
         </button>
       </header>
-      {userInfo && <NavBar userInfo={userInfo} />}
+      <NavBar />
     </>
   );
 };

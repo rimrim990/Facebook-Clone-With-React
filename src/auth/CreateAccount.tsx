@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { authService } from "../fbase";
+import { authService, dbService } from "../fbase";
+import { User } from "../common/App";
+import photo from "../image/free-icon-user-picture.png";
 
 const CreateAccount = () => {
   const history = useHistory();
@@ -17,11 +19,12 @@ const CreateAccount = () => {
         password
       );
       if (user.user) {
-        await user.user.updateProfile({
+        const newUser: User = {
+          uid: user.user.uid,
           displayName: name,
-        });
-      } else {
-        console.log("profile update err!");
+          photoUrl: photo,
+        };
+        await dbService.collection("userInfo").doc(newUser.uid).set(newUser);
       }
       history.push("/");
     } catch (err) {

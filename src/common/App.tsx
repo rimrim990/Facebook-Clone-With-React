@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { authService } from "../fbase";
+import { authService, dbService } from "../fbase";
 import AppRouter from "./AppRouter";
 import userImage from "../image/free-icon-user-picture.png";
 import "./App.css";
 
 export interface User {
   uid: string;
-  displayName: string | null;
+  displayName: string;
   photoUrl: string;
 }
 
@@ -23,20 +23,20 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
+    authService.onAuthStateChanged(async (user) => {
       if (user) {
         // User is signed in
-        let photoUrl: string | null = user.photoURL;
-
-        // set default user image
-        if (photoUrl === null) {
-          photoUrl = userImage;
-        }
-
-        setUserInfo({
-          uid: user.uid,
-          displayName: user.displayName,
-          photoUrl: photoUrl,
+        const querySnapshot = await dbService
+          .collection("userInfo")
+          .where("uid", "==", user.uid)
+          .get();
+        querySnapshot.forEach((doc) => {
+          const { uid, displayName, photoUrl } = doc.data();
+          setUserInfo({
+            uid: uid,
+            displayName: displayName,
+            photoUrl: photoUrl,
+          });
         });
         setIsLoggedIn(true);
       } else {

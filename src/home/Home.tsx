@@ -15,13 +15,18 @@ const Home = ({ userInfo }: AppProps) => {
   const history = useHistory();
 
   useEffect(() => {
-    dbService.collection("feeds").onSnapshot((snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setFeedList(data);
-    });
+    dbService
+      .collection("feeds")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setFeedList(data);
+      });
+    if (userInfo) {
+    }
   }, []);
 
   if (userInfo) {

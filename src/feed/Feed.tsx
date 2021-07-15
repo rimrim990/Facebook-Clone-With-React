@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { User } from "../common/App";
 import { FeedObjExtended } from "./FeedList";
 import { dbService } from "../fbase";
 import "./Feed.css";
-import img from "../image/free-icon-user-picture.png";
 
 interface AppProps {
   feed: FeedObjExtended;
-  userInfo: User;
   isOwner: boolean;
 }
 
-const Feed = ({ feed, userInfo, isOwner }: AppProps) => {
+const Feed = ({ feed, isOwner }: AppProps) => {
+  const [creator, setCreator] = useState<User | null>(null);
+  const getCreatorInfo = async () => {
+    const querySnapshot = await dbService
+      .collection("userInfo")
+      .where("uid", "==", feed.creator)
+      .get();
+    querySnapshot.forEach((doc) => {
+      const { uid, displayName, photoUrl } = doc.data();
+      setCreator({
+        uid: uid,
+        displayName: displayName,
+        photoUrl: photoUrl,
+      });
+    });
+  };
   const onDeleteClick = () => {
     try {
       dbService.collection("feeds").doc(feed.id).delete();
@@ -19,18 +32,27 @@ const Feed = ({ feed, userInfo, isOwner }: AppProps) => {
       console.log(err.message);
     }
   };
+  getCreatorInfo();
   return (
     <div className="feed">
-      <div className="feed-header">
-        <img draggable={false} className="creator-img" src={img} alt="user" />
-        <div className="creator-info">
-          <span className="creator">User</span>
-          <br />
-          <span className="create-date">
-            {new Date(feed.createdAt).toString().substr(4, 11)}
-          </span>
+      {creator && (
+        <div className="feed-header">
+          <img
+            draggable={false}
+            className="creator-img"
+            src={creator.photoUrl}
+            alt="user"
+          />
+
+          <div className="creator-info">
+            <span className="creator">{creator?.displayName}</span>
+            <br />
+            <span className="create-date">
+              {new Date(feed.createdAt).toString().substr(4, 11)}
+            </span>
+          </div>
         </div>
-      </div>
+      )}
       <div className="feed-form">
         <p className="feed-content">{feed.content}</p>
         {feed.photoUrl && (
