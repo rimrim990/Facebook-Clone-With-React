@@ -1,5 +1,7 @@
 .header-nav {
   background-color: white;
+  text-align: center;
+  padding: 10px;
 }
 
 .header-nav ul {
@@ -14,4 +16,11 @@
 
 .header-nav ul li .nav-btn {
   text-decoration: none;
+  color: black;
+  margin: 0px 20px;
+  font-size: 17px;
+}
+
+.header-nav ul li .nav-btn:hover {
+  color: #1877f2;
 }
